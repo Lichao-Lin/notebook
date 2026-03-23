@@ -3,7 +3,7 @@ echo
 ```
 一、客户端发起SSH请求需要的信息
 基本信息（必须）
-bash
+```bash
 # 最基本的连接命令
 ssh username@hostname
 
@@ -12,9 +12,11 @@ ssh -p port -i private_key_file username@hostname
 
 # 实际示例
 ssh -p 22 -i ~/.ssh/id_rsa root@192.168.1.100
+```
+
 需要准备的4类信息
 1. 目标服务器信息
-bash
+```bash
 # IP地址或域名（二选一）
 192.168.1.100          # IP地址
 server.example.com     # 域名
@@ -23,8 +25,9 @@ my-server.local        # 本地主机名
 # 端口号（默认22，如果修改过需要指定）
 -p 2222                # 非标准端口
 -p 443                 # 用HTTPS端口绕过防火墙
+```
 2. 用户身份信息
-bash
+```bash
 # 用户名
 root                   # 超级用户
 ubuntu                 # Ubuntu系统默认用户
@@ -34,8 +37,9 @@ admin                  # 自定义管理用户
 # 认证方式
 密码认证：需要知道用户密码
 密钥认证：需要私钥文件（~/.ssh/id_rsa）
+```
 3. 认证凭证（二选一）
-bash
+```bash
 # 方式1：密码（简单但不安全）
 ssh user@192.168.1.100
 # 提示输入密码：******
@@ -43,8 +47,9 @@ ssh user@192.168.1.100
 # 方式2：密钥文件（推荐）
 -i ~/.ssh/id_rsa      # 指定私钥文件
 # 如果有密钥密码，还需要输入
+```
 4. 连接参数（可选）
-bash
+```bash
 # 超时设置
 -o ConnectTimeout=10   # 连接超时10秒
 
@@ -53,9 +58,10 @@ bash
 
 # 跳板机
 -J jumpuser@jump-server  # 通过跳板机连接
+```
 二、客户端发送请求的完整过程
 第1步：DNS解析（如果使用域名）
-bash
+```bash
 # 客户端将域名解析为IP
 $ host server.example.com
 server.example.com has address 93.184.216.34
@@ -82,6 +88,7 @@ SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.4
 # 调试输出
 debug1: Local version string SSH-2.0-OpenSSH_9.0
 debug1: Remote protocol version 2.0, remote software version OpenSSH_8.9p1
+```
 第4步：算法协商
 bash
 # 客户端发送支持的算法列表
